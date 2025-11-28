@@ -1,0 +1,154 @@
+
+
+
+// // src/pages/AdminDashboard.jsx
+// import React from "react";
+// import Navbar from "../components/HeroCarousel";
+// import HeroCarousel from "../components/HeroCarousel";
+// import ResourcesSection from "../components/ResourcesSection";
+// import "../design/AdminDashboard.css"; // import the CSS we’ll extract from the HTML
+
+// export default function AdminDashboard() {
+//   const user = JSON.parse(localStorage.getItem("user"));
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("user");
+//     window.location.href = "/login"; // or use `useNavigate` from react-router
+//   };
+
+//   return (
+//     <div className="container">
+//       {/* Navbar from your components, styled */}
+//       <nav>
+//         <div className="user-info">
+//           {user ? `Welcome, ${user.name}` : "Welcome, Admin"}
+//         </div>
+//         <button onClick={handleLogout}>Logout</button>
+//       </nav>
+
+//       {/* HeroCarousel Section */}
+//       <section id="hero-carousel">
+//         <h3>Hero Carousel</h3>
+//         <HeroCarousel />
+//       </section>
+
+//       {/* Resources Section */}
+//       <section id="resources-section">
+//         <h3>Resources Section</h3>
+//         <p>Explore the resources below to get started with your projects.</p>
+//         <ResourcesSection />
+//       </section>
+
+//       <h2>Admin Dashboard - Protected Route</h2>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+// src/pages/AdminDashboard.jsx
+// import React from "react";
+// import HeroCarousel from "../components/HeroCarousel";
+// import ResourcesSection from "../components/ResourcesSection";
+// import "../design/AdminDashboard.css";
+
+// export default function AdminDashboard() {
+//   const user = JSON.parse(localStorage.getItem("user"));
+
+//   const handleLogout = () => {
+//     localStorage.removeItem("token");
+//     localStorage.removeItem("user");
+//     window.location.href = "/";
+//   };
+
+//   return (
+//     <div className="container">
+//       {/* Navbar */}
+//       <nav>
+//         <div className="user-info">
+//           {user ? `Welcome, ${user.name}` : "Welcome, Admin"}
+//         </div>
+//         <button onClick={handleLogout}>Logout</button>
+//       </nav>
+
+//       {/* Hero Carousel */}
+//       <section id="hero-carousel">
+//         <h3>Hero Carousel</h3>
+//         <HeroCarousel />
+//       </section>
+
+//       {/* Resources Section */}
+//       <section id="resources-section">
+//         <h3>Resources Section</h3>
+//         <p>Explore, edit, and manage resources below.</p>
+//         <ResourcesSection role="admin" />
+//       </section>
+
+//       <h2>Admin Dashboard - Protected Route</h2>
+//     </div>
+//   );
+// }
+
+
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import HeroCarousel from "../components/HeroCarousel";
+import ResourcesSection from "../components/ResourcesSection";
+import "../design/AdminDashboard.css";
+
+export default function AdminDashboard() {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  };
+
+  return (
+    <div className="container">
+      {/* Navbar */}
+      <nav>
+        <div className="user-info">
+          {user ? `Welcome, ${user.name}` : "Welcome, Admin"}
+        </div>
+        <button onClick={handleLogout}>Logout</button>
+      </nav>
+
+      {/* Upload New Resource Button */}
+      <div style={{ margin: "20px 0" }}>
+        <button
+          className="upload-btn"
+          onClick={() => navigate("/admin/upload")}
+        >
+          Upload New Resource
+        </button>
+      </div>
+
+      {/* Hero Carousel */}
+      <section id="hero-carousel">
+        <h3>Hero Carousel</h3>
+        <HeroCarousel />
+      </section>
+
+      {/* Resources Section */}
+      <section id="resources-section">
+        <h3>Resources Section</h3>
+        <p>Explore, edit, and manage resources below.</p>
+        <ResourcesSection role="admin" />
+      </section>
+
+      <h2>Admin Dashboard - Protected Route</h2>
+    </div>
+  );
+}
+
+
+
+
+
